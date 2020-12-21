@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">IdfList</string>
+    <string-array name="Type">
+        <item>Commander</item>
+        <item>Soldier</item>
+    </string-array>
+</resources>
