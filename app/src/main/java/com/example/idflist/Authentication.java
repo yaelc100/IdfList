@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -18,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class Authentication extends AppCompatActivity {
     public EditText edPassword, edEmail;
     private FirebaseAuth mAuth;
+    Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,4 +79,27 @@ public class Authentication extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.Auth) {
+            intent = new Intent(this, Authentication.class);
+        } else if (id == R.id.Date) {
+            intent = new Intent(this, DateActivity.class);
+        } else if (id == R.id.Img) {
+            intent = new Intent(this, ImageActivity.class);
+        } else if (id == R.id.Reg) {
+            intent = new Intent(this, Register.class);
+        }
+        startActivity(intent);
+        return true;
+    }
+
 }

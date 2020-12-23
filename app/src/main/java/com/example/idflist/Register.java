@@ -2,6 +2,7 @@ package com.example.idflist;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Patterns;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -28,6 +31,7 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
     private EditText edName, edEmail, edPhoneNumber,edPassword;
     private Spinner spinner;
     private String type;
+    Intent intent;
 
 
     @Override
@@ -130,4 +134,27 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
     public void createUser(View view) {
         registerUser();
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.Auth) {
+            intent = new Intent(this, Authentication.class);
+        } else if (id == R.id.Date) {
+            intent = new Intent(this, DateActivity.class);
+        } else if (id == R.id.Img) {
+            intent = new Intent(this, ImageActivity.class);
+        } else if (id == R.id.Reg) {
+            intent = new Intent(this, Register.class);
+        }
+        startActivity(intent);
+        return true;
+    }
+
 }

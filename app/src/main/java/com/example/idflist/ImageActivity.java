@@ -11,6 +11,8 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -28,6 +30,7 @@ public class ImageActivity extends AppCompatActivity {
     private Uri imageUri;
     private ImageView imageView;
     private User user;
+    Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,5 +101,28 @@ public class ImageActivity extends AppCompatActivity {
 
     private String getUserUid(){
         return FirebaseAuth.getInstance().getCurrentUser().getUid();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.Auth) {
+            intent = new Intent(this, Authentication.class);
+        } else if (id == R.id.Date) {
+            intent = new Intent(this, DateActivity.class);
+        } else if (id == R.id.Img) {
+            intent = new Intent(this, ImageActivity.class);
+        } else if (id == R.id.Reg) {
+            intent = new Intent(this, Register.class);
+        }
+        startActivity(intent);
+        return true;
     }
 }
